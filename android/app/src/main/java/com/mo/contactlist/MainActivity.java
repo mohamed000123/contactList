@@ -1,4 +1,4 @@
-package com.contactlist;
+package com.mo.contactlist;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
 import ContactList from '../components/contactList';
-const Home = () => {
+const Home = ({navigation: {navigate}}) => {
   return (
     <>
       <View style={{flex: 1}}>

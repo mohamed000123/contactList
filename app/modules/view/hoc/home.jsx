@@ -1,10 +1,12 @@
 import React from 'react';
-import {Text} from 'react-native';
-
+import {View} from 'react-native';
+import ContactList from '../components/contactList';
 const Home = () => {
   return (
     <>
-      <Text>Home page</Text>
+      <View style={{flex: 1}}>
+        <ContactList />
+      </View>
     </>
   );
 };

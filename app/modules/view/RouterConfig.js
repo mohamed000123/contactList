@@ -19,7 +19,6 @@ export default function ContactStack() {
           title: 'fav contacts',
         })}
       />
-      <Stack.Screen name="ContactList" component={ContactList} />
     </Stack.Navigator>
   );
 }

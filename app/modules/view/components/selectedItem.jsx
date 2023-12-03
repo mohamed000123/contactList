@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import MIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -25,7 +24,7 @@ const SelectedItem = ({item, deselectContact}) => {
       <TouchableOpacity
         style={styles.closeButton}
         onPress={() => deselectContact(item.recordID)}>
-        <MIcon name="close" size={18} color="white" />
+        <Text style={{color: 'white', fontSize: 15}}>x</Text>
       </TouchableOpacity>
     </View>
   );

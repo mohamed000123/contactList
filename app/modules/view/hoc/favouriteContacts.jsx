@@ -15,7 +15,7 @@ const FavouriteContacts = () => {
     })();
   }, [setFavContacts]);
   const renderItem = ({item}) => {
-    return <ContactItem favContact={true} item={item} />;
+    return <ContactItem isFavContact={true} item={item} />;
   };
   return (
     <View style={styles.contactsContainer}>

@@ -54,15 +54,15 @@ const HeaderSection = ({
         setPreFavContacts(parsedData);
       }
     })();
-  }, [setPreFavContacts]);
+  });
   const handelNext = () => {
     try {
       AsyncStorage.setItem(
         'favContacts',
         JSON.stringify([...preFavContacts, ...selectedItems]),
       ).then(() => {
-        navigation.navigate('FavouriteContacts');
         setSelectedItems([]);
+        navigation.navigate('FavouriteContacts');
       });
     } catch (error) {
       console.log('Error saving data:', error);

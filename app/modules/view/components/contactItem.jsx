@@ -11,7 +11,7 @@ import {
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-const ContactItem = ({item, selectContact, favContact}) => {
+const ContactItem = ({item, selectContact, isFavContact, preFavContacts}) => {
   return (
     <View style={styles.contactItemContainer}>
       <Image
@@ -21,7 +21,7 @@ const ContactItem = ({item, selectContact, favContact}) => {
       <View style={styles.contactData}>
         <Text style={styles.contactName}>{item.displayName}</Text>
       </View>
-      {!favContact && (
+      {!isFavContact && (
         <TouchableOpacity
           style={styles.checkMark}
           onPress={() => {

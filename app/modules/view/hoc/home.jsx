@@ -8,8 +8,7 @@ const Home = ({navigation}) => {
   const contacts = useSelector(state => state.contactsReducer.contacts);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log('fired');
-    getContacts()(dispatch);
+    dispatch(getContacts());
   }, []);
   const [searchResult, setSearchResult] = useState(null);
   const [selectedItems, setSelectedItems] = useState([]);

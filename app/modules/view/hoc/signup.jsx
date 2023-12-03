@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -10,8 +10,14 @@ import {
 import AppInput from '../components/appinput';
 import auth from '@react-native-firebase/auth';
 import Alert from '../components/alert';
+import Contacts from 'react-native-contacts';
 
 const Signup = ({navigation}) => {
+  useEffect(() => {
+    (async () => {
+      const grante = await Contacts.requestPermission();
+    })();
+  }, []);
   const [values, setValues] = useState({email: '', password: ''});
 
   const updateInputval = (val, key) => {
@@ -87,7 +93,7 @@ const Signup = ({navigation}) => {
       </View>
       <Alert
         visible={isAlertVisible}
-        message="This is a custom alert!"
+        message="invalid credentials!"
         onClose={closeAlert}
       />
     </SafeAreaView>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   StyleSheet,
   Text,
@@ -11,7 +11,7 @@ import {
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-const ContactItem = ({item}) => {
+const ContactItem = ({item, selectContact, favContact}) => {
   return (
     <View style={styles.contactItemContainer}>
       <Image
@@ -21,7 +21,13 @@ const ContactItem = ({item}) => {
       <View style={styles.contactData}>
         <Text style={styles.contactName}>{item.displayName}</Text>
       </View>
-      <TouchableOpacity style={styles.checkMark}></TouchableOpacity>
+      {!favContact && (
+        <TouchableOpacity
+          style={styles.checkMark}
+          onPress={() => {
+            selectContact(item.recordID);
+          }}></TouchableOpacity>
+      )}
     </View>
   );
 };
@@ -45,7 +51,7 @@ const styles = StyleSheet.create({
   },
   contactData: {
     borderBottomWidth: 1,
-    borderColor: 'rgba(255, 255, 255, 0.751)',
+    borderColor: 'rgba(255, 255, 255, 0.6)',
     height: '100%',
     flex: 1,
     marginLeft: '5%',
@@ -62,10 +68,10 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: '5%',
     alignSelf: 'center',
-    height: WINDOW_WIDTH / 20,
-    width: WINDOW_WIDTH / 20,
-    borderRadius: WINDOW_WIDTH / 20,
+    height: WINDOW_WIDTH / 15,
+    width: WINDOW_WIDTH / 15,
+    borderRadius: WINDOW_WIDTH / 15,
     borderWidth: 0.5,
-    borderColor: 'rgba(250,250,250, .4)',
+    borderColor: 'rgba(255, 255, 255, 0.6)',
   },
 });

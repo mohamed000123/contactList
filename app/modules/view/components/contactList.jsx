@@ -1,42 +1,23 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, View, Text, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import ContactItem from '../components/contactItem';
-import Contacts from 'react-native-contacts';
-
+import {useSelector, useDispatch} from 'react-redux';
+import {getContacts} from '../../Redux/action_creators';
 const ContactList = () => {
-  const [contacts, setContacts] = useState([]);
+  const contacts = useSelector(state => state.contactsReducer.contacts);
+  const dispatch = useDispatch();
 
-  const getContacts = () => {
-    Contacts.requestPermission()
-      .then(granted => {
-        if (granted === 'authorized') {
-          Contacts.getAll()
-            .then(contacts => {
-              setContacts(contacts);
-            })
-            .catch(err => {
-              console.error(err);
-            });
-        }
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  };
   useEffect(() => {
-    getContacts();
+    getContacts()(dispatch);
   }, []);
-
   return (
-    <View style={styles.screenContainer}>
-      <View style={styles.contactsContainer}>
-        <FlatList
-          style={{flex: 1}}
-          data={contacts}
-          showsVerticalScrollIndicator={false}
-          renderItem={ContactItem}
-        />
-      </View>
+    <View style={styles.contactsContainer}>
+      <FlatList
+        data={contacts}
+        showsVerticalScrollIndicator={false}
+        renderItem={ContactItem}
+        keyExtractor={item => item.recordID}
+      />
     </View>
   );
 };
@@ -44,15 +25,8 @@ const ContactList = () => {
 export default ContactList;
 
 const styles = StyleSheet.create({
-  screenContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(35,31,36,1)',
-  },
-
   contactsContainer: {
-    width: '100%',
+    backgroundColor: 'rgba(35,31,36,1)',
     flex: 1,
   },
 });
